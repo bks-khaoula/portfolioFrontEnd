@@ -1,0 +1,45 @@
+
+.cont{
+  margin-top: 30px;
+  width: 50%;
+ 
+}
+
+h4{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  font-size: 30px;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+mat-form-field {
+  margin-right: 12px;
+}
+
+agm-map{
+  height: 400px;
+}
+
+
+td {
+  padding-right: 8px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+
+
+
