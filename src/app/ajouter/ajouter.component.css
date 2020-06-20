@@ -1,7 +1,7 @@
 
 .cont{
   margin-top: 30px;
-  width: 50%;
+  
  
 }
 
@@ -41,5 +41,14 @@ td {
 }
 
 
+.example-button-row button {
+  margin-right: 8px;
+}
 
+textarea.note-codable{
+  display: none;
+}
 
+a {
+color: red;
+}

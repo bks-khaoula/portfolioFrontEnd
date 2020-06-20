@@ -6,6 +6,9 @@ export class Conference{
     date_debut:Date;
     date_fin:Date;
     description:string="";
+    email:string;
+    site:string;
+    acceptation:boolean;
 
     
 }

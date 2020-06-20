@@ -4,6 +4,9 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { AjouterComponent } from './ajouter/ajouter.component';
+import { AuthComponent } from './auth/auth.component';
+import { AdminComponent } from './admin/admin.component';
+import { AgendaComponent } from './agenda/agenda.component';
 
 
 const routes: Routes = [
@@ -22,6 +25,17 @@ const routes: Routes = [
 {
   path:"",redirectTo:"home",pathMatch:"full"
 },
+{
+  path:"auth",component:AuthComponent
+},
+{
+  path:"admin",component:AdminComponent
+  
+},
+{
+  path:"agenda",component:AgendaComponent
+}
+
 
 ];
 

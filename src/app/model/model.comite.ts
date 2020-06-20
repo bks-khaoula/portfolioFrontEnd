@@ -4,4 +4,5 @@ export class Comite {
     tel: string;
     email: string;
     categorie: string;
+    
 }

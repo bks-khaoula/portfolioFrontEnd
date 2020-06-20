@@ -1,0 +1,26 @@
+<div *ngIf="conferences">
+<div *ngFor="let c of conferences._embedded.conferences">
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            {{c.titre}}
+        </div>
+        <div class="panel-body">
+            <table>
+                <tr>
+                    <td>{{c.site}} </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="img-thumbnail"  src= "{{this.service.host+'/conference/photoConference/'+c.id}}">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>    
+
+
+</div>
+</div>
+

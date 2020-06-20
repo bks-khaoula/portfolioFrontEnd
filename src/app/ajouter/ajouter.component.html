@@ -1,239 +1,230 @@
 
-<mat-horizontal-stepper labelPosition="bottom" #stepper>
-  <mat-step  >
-          <ng-template matStepLabel>Fill out your name</ng-template>
-          <!------>
-          <div class="cont ">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-            <h4>Nouvel Évènement</h4>
-            </div>
-            <div class="panel-body">
-              <div class="example-container">
-                <form  [formGroup]="reactiveForm4" >
-                <mat-form-field>
-                  <input matInput placeholder="Titre" type="text" name="titre" formControlName="titre"
+<mat-horizontal-stepper labelPosition="bottom"  #stepper>
+  <mat-step>
+    <ng-template matStepLabel >Nouvel évènement</ng-template>
+  <div class="cont ">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      <h4>Nouvel Évènement</h4>
+      </div>
+      <div class="panel-body">
+        <div class="example-container">
+          <form  [formGroup]="reactiveForm4" >
+            <div class="col-md-3">
+            <mat-form-field>
+              <input matInput placeholder="Titre" type="text" name="titre" formControlName="titre"
                   [(ngModel)]="conference.titre">
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-select placeholder="Catégorie" type="text" name="categorie" formControlName="categorie"
-                   [(ngModel)]="conference.categorie">
-                    <mat-option value="Divers">Divers</mat-option>
-                    <mat-option value="Lettres rt sciences humaines">Lettres rt sciences humaines</mat-option>
-                    <mat-option value="Sciences de l'ingénieur">Sciences de l'ingénieur</mat-option>
-                  </mat-select>
-                </mat-form-field>
-            
-                <mat-form-field>
-                  <textarea matInput placeholder="Image" type="text"  name="image" formControlName="image"
-                  [(ngModel)]="conference.image"></textarea>
-                </mat-form-field>
-              </form>
-              </div>
-              </div>
-              </div>
+            </mat-form-field>
           
-              
-
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>Dates</h4>
+            <mat-form-field>
+              <mat-select placeholder="Catégorie" type="text" name="categorie" formControlName="categorie"
+                   [(ngModel)]="conference.categorie">
+              <mat-option value="Divers">Divers</mat-option>
+              <mat-option value="Lettres rt sciences humaines">Lettres rt sciences humaines</mat-option>
+              <mat-option value="Sciences de l'ingénieur">Sciences de l'ingénieur</mat-option>
+              </mat-select>
+            </mat-form-field>
             </div>
-            <div class="panel-body">
-        
-              <p>Évènement sur une période</p>
-           
-              <form  [formGroup]="reactiveForm3" >
-            <p>
-            <label class="control-label">Date début</label><br>
-            <input  type="date" name="date_debut" formControlName="date_debut"
-             [(ngModel)]="conference.date_debut" />
-            </p>
-            <br>
-            <p>
-              <label class="control-label">Date fin</label><br>
-              <input  type="date" name="date_fin" formControlName="date_fin"
-              [(ngModel)]="conference.date_fin" />
-            </p>
+            
+            <div class="col-md-3">
+            <mat-form-field>
+              <input matInput placeholder="Email" type="text"  name="email" formControlName="email"
+                  [(ngModel)]="conference.email">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Site Web" type="text"  name="site" formControlName="site"
+                  [(ngModel)]="conference.site">
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+
+            <span >
+              <input type="file" (change)="onSelectedFile($event)">
+              <button class="btn btn-success btn-sm" (click)="uploadPhoto()" >
+              </button>
+            </span>
+            
+            
+          </div>
           </form>
-            </div>
-              </div>
-
-            </div>
-
-
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>Description</h4>
-            </div>
-            <div class="panel-body">
-        
-              <form  [formGroup]="reactiveForm2" >
-              
-                <label for="description">Texte de description</label>
-                <textarea class="form-control" rows="5" id="description" type="text" name="description" formControlName="description"
-                 [(ngModel)]="conference.description"></textarea>
-              
-              </form>
-              </div>
-              </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-            <h4>Lieu de  Évènement</h4>
-            </div>
-            <div class="panel-body">
-              <agm-map [latitude]="latitude" [longitude]="longitude">
-              </agm-map>
-    <form  [formGroup]="reactiveForm" >   
-<table class="example-full-width" cellspacing="0">
-            <tr>
-              <td><mat-form-field class="example-full-width">
-                <input matInput placeholder="longitude" name="longitude" formControlName="longitude"
-                 [(ngModel)]='localisation.longitude' />
+        </div>
+      </div>
+    </div>
+          
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      <h4>Dates</h4>
+      </div>
+      <div class="panel-body">
+        <p>Évènement sur une période</p>
+          <form  [formGroup]="reactiveForm3" >
+        <p>
+          <label class="control-label">Date début</label><br>
+          <input  type="date" name="date_debut" formControlName="date_debut"
+             [(ngModel)]="conference.date_debut" />
+        </p><br>
+        <p>
+          <label class="control-label">Date fin</label><br>
+          <input  type="date" name="date_fin" formControlName="date_fin"
+              [(ngModel)]="conference.date_fin" />
+        </p>
+          </form>
+      </div>
+    </div>
+  </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      <h4>Description</h4>
+      </div>
+      <div class="panel-body">
+        <form  [formGroup]="reactiveForm2" >
+          <label for="description">Texte de description</label>
+          <textarea class="form-control" rows="5" id="description" type="text" name="description" formControlName="description"
+              [(ngModel)]="conference.description"></textarea> 
+        </form>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      <h4>Lieu de  Évènement</h4>
+      </div>
+      <div class="panel-body">
+       <agm-map [latitude]="latitude" [longitude]="longitude">
+       </agm-map>
+      <form  [formGroup]="reactiveForm" >   
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="longitude" name="longitude" formControlName="longitude"
+              [(ngModel)]='localisation.longitude' />
               </mat-form-field></td>
-              <td><mat-form-field class="example-full-width" >
-                <input matInput placeholder="latidude" name="latidude" formControlName="longitude"
+          <td><mat-form-field class="example-full-width" >
+            <input matInput placeholder="latidude" name="latidude" formControlName="longitude"
                  [(ngModel)]='localisation.latidude' />
               </mat-form-field></td>
-              <td><mat-form-field class="example-full-width">
-                <input matInput placeholder="altitude" name="altitude" formControlName="altitude"
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="altitude" name="altitude" formControlName="altitude"
                  [(ngModel)]='localisation.altitude' />
               </mat-form-field></td>
-              </tr>
-              <tr>
-                <td><mat-form-field class="example-full-width">
-                  <input matInput placeholder="Adresse" type="text" name="Adresse" formControlName="Adresse"
-                   [(ngModel)]="localisation.adresse" />
-                </mat-form-field></td>
-                <td><mat-form-field class="example-full-width" >
-                  <input matInput placeholder="Ville" type="text" name="Ville" formControlName="Ville"
-                   [(ngModel)]="localisation.ville" />
-
-                </mat-form-field></td>
-                <td><mat-form-field class="example-full-width">
-                  <input matInput placeholder="Pays" type="text" name="Pays" formControlName="Pays"
-                   [(ngModel)]="localisation.pays" />
-                </mat-form-field></td>
-                </tr>
-          </table>  
-        </form>
-            </div> 
-          </div>
+        </tr>
+        <tr>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Adresse" type="text" name="Adresse" formControlName="Adresse"
+                [(ngModel)]="localisation.adresse" />
+              </mat-form-field></td>
+          <td><mat-form-field class="example-full-width" >
+            <input matInput placeholder="Ville" type="text" name="Ville" formControlName="Ville"
+                [(ngModel)]="localisation.ville" />
+              </mat-form-field></td>
+          <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Pays" type="text" name="Pays" formControlName="Pays"
+                [(ngModel)]="localisation.pays" />
+              </mat-form-field></td>
+        </tr>
+      </table>  
+      </form>
+      </div> 
+    </div>
           <!------>
-          <div>
-              <button mat-button matStepperNext>Next</button>
-          </div>
+    <div>
+        <button mat-button matStepperNext>Next</button>
+    </div>
   </mat-step>
-  <mat-step  >
-
+  <mat-step>
     <!------------>
-      <form [formGroup]="reactiveForm5">
-          <ng-template matStepLabel>Le Comité</ng-template>
-
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4>Les membre de Comité </h4>
-            </div>
-            <div class="panel-body" >
-            <div class="col-md-6 mx-auto" >
-              <mat-form-field >
-                <input matInput placeholder="Nom" type="text" name="nom" formControlName="nom"
-                [(ngModel)]="comite.nom">
-              </mat-form-field>
-
-
-              <mat-form-field>
-                <input matInput placeholder="Prénom" type="text" name="prenom" formControlName="prenom"
-                 [(ngModel)]="comite.prenom">
-              </mat-form-field>
-              
-              <mat-form-field>
-                <input matInput placeholder="Téléphone" type="text" name="tel" formControlName="tel" 
-                [(ngModel)]="comite.tel">
-              </mat-form-field>
-            </div>
-              <mat-form-field>
-                <input matInput placeholder="Email" type="text" name="email" formControlName="email"
-                [(ngModel)]="comite.email">
-              </mat-form-field>
-             <mat-form-field>
-                  <mat-select placeholder="Catégorie" type="text" name="categorie" formControlName="categorie"
-                  [(ngModel)]="comite.categorie">
-                    <mat-option value="conference proposal">conference proposal</mat-option>
-                    <mat-option value="Honorary Chairs">Honorary Chairs</mat-option>
-                    <mat-option value="Chairs">Chairs</mat-option>
-                    <mat-option value="Co-Chairs">Co-Chairs</mat-option>
-                    <mat-option value="scientific Committee">scientific Committee</mat-option>
-                  </mat-select>
-                </mat-form-field>
- 
-
-
-              <div class="example-button-row">
-              <button  mat-raised color="primary">no</button>
-              </div>
-            </div>
-        </div></form>
-
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-          <h4>Liste de Comité</h4>
-          </div>
-          <div class="panel-body">
-        
-<!------------------------->
-<table class="table table-striped " *ngIf="comites">
-  <thead >
-    <tr>
-      <th>Nom</th>
-      <th>Prénom</th>
-      <th>Email</th>
-      <th>Téléphone</th>
-      <th>Catégorie</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let c of comites._embedded.comites"  >
-        <td>{{c.nom}}  </td>
-        <td>{{c.prenom}} </td>
-        <td>{{c.email}} </td>
-        <td>{{c.tel}} </td>
-        <td>{{c.categorie}} </td>
-        <a href="" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-        <a href="" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-      </tr>
+    <form [formGroup]="reactiveForm5">
+      <ng-template matStepLabel>Le Comité</ng-template>
       
-    </tbody>
-</table>
-
-
-
-
+      <div class="panel panel-default">
+        <div class="panel-heading">
+        <h4>Ajouter Les membre de Comité </h4>
+        </div>
+        <div class="panel-body" >
+          <div class="col-md-6" >
+          <mat-form-field >
+            <input matInput placeholder="Nom" type="text" name="nom" formControlName="nom"
+                [(ngModel)]="comite.nom">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Prénom" type="text" name="prenom" formControlName="prenom"
+                 [(ngModel)]="comite.prenom">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Téléphone" type="text" name="tel" formControlName="tel" 
+                 [(ngModel)]="comite.tel">
+          </mat-form-field>
+          
+          <mat-form-field>
+            <input matInput placeholder="Email" type="text" name="email" formControlName="email"
+                 [(ngModel)]="comite.email">
+          </mat-form-field>
+        </div>
+          <mat-form-field>
+            <mat-select placeholder="Catégorie" type="text" name="categorie" formControlName="categorie"
+                  [(ngModel)]="comite.categorie">
+              <mat-option value="conference proposal">conference proposal</mat-option>
+              <mat-option value="Honorary Chairs">Honorary Chairs</mat-option>
+              <mat-option value="Chairs">Chairs</mat-option>
+              <mat-option value="Co-Chairs">Co-Chairs</mat-option>
+              <mat-option value="scientific Committee">scientific Committee</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
           <div class="example-button-row">
-            <button (click)="saveComite()" (click)="getComite()"  >Ajouter</button>
-            </div>
-
-
+            <button mat-raised-button color="primary"
+                (click)="saveComite()" (click)="getComite()">Ajouter</button>   
           </div>
         </div>
-        
+      </div>
+
+    </form>
 
 
-          <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-          </div>
+
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      <h4>Liste de Comité</h4>
+      </div>
+      <div class="panel-body">
+      <table class="table table-striped " *ngIf="comites">
+        <thead >
+         <tr>
+           <th>Nom</th>
+           <th>Prénom</th>
+           <th>Email</th>
+           <th>Téléphone</th>
+           <th>Catégorie</th>
+           <th></th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr *ngFor="let c of comites._embedded.comites"  >
+           <td>{{c.nom}}  </td>
+           <td>{{c.prenom}} </td>
+           <td>{{c.email}} </td>
+           <td>{{c.tel}} </td>
+           <td>{{c.categorie}} </td>
+             <a (click)="ondelet(c) " class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+         </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
       <!----------->    
       
   </mat-step>
   <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-      You are now done.
+
       <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
   </mat-step>
 </mat-horizontal-stepper>
+

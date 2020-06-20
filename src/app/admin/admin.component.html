@@ -1,0 +1,49 @@
+
+<h2 class="background double"><span>Les événement proposé</span></h2>
+<div *ngIf="conferences">
+    <div *ngFor="let c of conferences._embedded.conferences">
+     <div class="col-md-6">   
+     <div class="panel panel-default">
+       <div class="panel-heading">
+        {{c.titre}}
+       </div>  
+       <div class="panel-body">
+        <table>
+            <tr> 
+               
+                <td>
+             <img class="img-thumbnail"  src= "{{this.service.host+'/conference/photoConference/'+c.id}}">
+                  
+                </td>
+            <td>
+                <span  >
+                     <i class="fa" [ngClass]="{
+                        'fa-thumbs-up':c.acceptation,
+                        'fa-thumbs-down':!c.acceptation}">
+                     </i>
+                     </span>       
+            </td>
+            </tr>
+                <tr>
+                <td>
+                   {{c.site}}
+                </td>
+            </tr>
+            
+        </table>
+       </div>
+     </div>   
+    </div>
+    </div>
+
+</div>
+<i class="fa fa-thumbs-up" aria-hidden="true"></i>
+<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+<i class="fa fa-check-square" aria-hidden="true"></i>
+
+<span class="badge">
+    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+<i class="fa fa-thumbs-down" aria-hidden="true"></i>
+
+<i class="fa fa-times-circle" aria-hidden="true"></i>
+ </span>
