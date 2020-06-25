@@ -1,4 +1,5 @@
 
+<body style="margin-top: 30px;">
 <mat-horizontal-stepper labelPosition="bottom"  #stepper>
   <mat-step>
     <ng-template matStepLabel >Nouvel évènement</ng-template>
@@ -40,11 +41,9 @@
 
             <span >
               <input type="file" (change)="onSelectedFile($event)">
-              <button class="btn btn-success btn-sm" (click)="uploadPhoto()" >
-              </button>
+              <p>Ajouter une Photo</p>
+              
             </span>
-            
-            
           </div>
           </form>
         </div>
@@ -57,7 +56,7 @@
       </div>
       <div class="panel-body">
         <p>Évènement sur une période</p>
-          <form  [formGroup]="reactiveForm3" >
+          <form  [formGroup]="reactiveForm4" >
         <p>
           <label class="control-label">Date début</label><br>
           <input  type="date" name="date_debut" formControlName="date_debut"
@@ -77,7 +76,7 @@
       <h4>Description</h4>
       </div>
       <div class="panel-body">
-        <form  [formGroup]="reactiveForm2" >
+        <form  [formGroup]="reactiveForm4" >
           <label for="description">Texte de description</label>
           <textarea class="form-control" rows="5" id="description" type="text" name="description" formControlName="description"
               [(ngModel)]="conference.description"></textarea> 
@@ -89,38 +88,57 @@
       <h4>Lieu de  Évènement</h4>
       </div>
       <div class="panel-body">
-       <agm-map [latitude]="latitude" [longitude]="longitude">
-       </agm-map>
+
+
+
+  <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
+    <agm-marker
+      [latitude]="latitude"
+      [longitude]="longitude"
+      *ngIf="locationChosen"></agm-marker>
+  </agm-map>
+
+
       <form  [formGroup]="reactiveForm" >   
       <table class="example-full-width" cellspacing="0">
         <tr>
           <td><mat-form-field class="example-full-width">
             <input matInput placeholder="longitude" name="longitude" formControlName="longitude"
-              [(ngModel)]='localisation.longitude' />
+              [(ngModel)]='localisation.longitude' value= {{longitude}}  />
               </mat-form-field></td>
-          <td><mat-form-field class="example-full-width" >
-            <input matInput placeholder="latidude" name="latidude" formControlName="longitude"
-                 [(ngModel)]='localisation.latidude' />
-              </mat-form-field></td>
+          
           <td><mat-form-field class="example-full-width">
-            <input matInput placeholder="altitude" name="altitude" formControlName="altitude"
-                 [(ngModel)]='localisation.altitude' />
+            <input matInput placeholder="latitude" name="latitude" formControlName="latitude"
+                 [(ngModel)]='localisation.latitude' value= {{latitude}}  />
               </mat-form-field></td>
         </tr>
+        
         <tr>
+
           <td><mat-form-field class="example-full-width">
-            <input matInput placeholder="Adresse" type="text" name="Adresse" formControlName="Adresse"
+            <input matInput placeholder="Adresse" type="text" name="Adresse" formControlName="adresse"
                 [(ngModel)]="localisation.adresse" />
               </mat-form-field></td>
           <td><mat-form-field class="example-full-width" >
-            <input matInput placeholder="Ville" type="text" name="Ville" formControlName="Ville"
+            <input matInput placeholder="Ville" type="text" name="Ville" formControlName="ville"
                 [(ngModel)]="localisation.ville" />
               </mat-form-field></td>
           <td><mat-form-field class="example-full-width">
-            <input matInput placeholder="Pays" type="text" name="Pays" formControlName="Pays"
+            <input matInput placeholder="Pays" type="text" name="Pays" formControlName="pays"
                 [(ngModel)]="localisation.pays" />
               </mat-form-field></td>
+              <td>
+                <button  (click)="uploadPhoto()" >ADD</button>
+              </td>
+
         </tr>
+        <tr>
+          <td>
+            {{latitude}}
+            {{longitude}}
+          </td>
+        </tr>
+
       </table>  
       </form>
       </div> 
@@ -129,6 +147,7 @@
     <div>
         <button mat-button matStepperNext>Next</button>
     </div>
+
   </mat-step>
   <mat-step>
     <!------------>
@@ -228,3 +247,4 @@
   </mat-step>
 </mat-horizontal-stepper>
 
+</body>

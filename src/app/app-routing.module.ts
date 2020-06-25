@@ -7,6 +7,7 @@ import { AjouterComponent } from './ajouter/ajouter.component';
 import { AuthComponent } from './auth/auth.component';
 import { AdminComponent } from './admin/admin.component';
 import { AgendaComponent } from './agenda/agenda.component';
+import { DetailsComponent } from './details/details.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,9 @@ const routes: Routes = [
 },
 {
   path:"agenda",component:AgendaComponent
+},
+{
+  path:"details/:id",component:DetailsComponent
 }
 
 

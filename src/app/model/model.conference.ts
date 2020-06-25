@@ -1,5 +1,5 @@
 export class Conference{
-   
+   id:number;
     titre:string="";
     categorie:string="";
     image:string="";
@@ -9,6 +9,21 @@ export class Conference{
     email:string;
     site:string;
     acceptation:boolean;
-
+    _links : {
+        self : {
+          href : string;
+        },
+        conference : {
+          href : string;
+        },
+        plannings: {
+          href : string;
+        },
+        localisations : {
+          href : string;
+        },
+        comites : {
+          href : string;
+        }}
     
 }

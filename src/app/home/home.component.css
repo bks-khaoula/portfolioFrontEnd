@@ -10,15 +10,31 @@ img{
 	max-height: 40%;
 }
 .section1{
-	background: rgba(255, 255, 255, 0);
+	text-align: center;
+	background: #fff;
+
 }
 section{
 	
 	margin: 0;
 	padding: 0;
+
 	display: flex;
 	justify-content: centre;
-	background: rgb(29, 29, 29);
+	background: #fff;
+	min-height: 40vh;
+	height: 20%;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	
+	
+}
+.sectionb{
+	
+	margin-top: 30px;
+	padding: 0;
+	display: flex;
+	justify-content: centre;
+	background:  #272a2d;
 	min-height: 40vh;
 	height: 20%;
 	font-family: Georgia, 'Times New Roman', Times, serif;
@@ -33,7 +49,7 @@ section{
 }
 .container .box{
    position: relative;
-   width: 300px;
+   width: 250px;
    padding: 40px;
    background: #fff;
    box-shadow: 0 5px 15px rgba(0,0,0,.1);
@@ -47,10 +63,10 @@ section{
 
 .container .box .icon {
 	position: relative;
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
 	color: #fff;
-	background: #000;
+	background:  #272a2d;
 	display: flex;
 	justify-content: center;
 	margin: 0 auto;
@@ -117,3 +133,41 @@ section{
 	font-weight: 500;
 	
 }
+.cont {
+	text-align: center;
+	max-width: 960px;
+	margin-left: 25%;
+  }
+  
+ 
+  
+  .container-title {
+	color: #ecbb7b;
+	margin-top: 80px;
+	font-weight: 700;
+	}
+  
+  .the {
+	font-size: 40px;
+	letter-spacing: -2px;
+	margin-left: -310px;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  }   
+   
+  .karateTitle {
+	font-size: 95px;
+	letter-spacing: -9.5px;
+	margin-right: 80px;
+	line-height: 0;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+  }
+  
+  .quoteTitle {
+	margin-top: 60px;
+	margin-left: 155px;
+	font-size: 45px;
+	line-height: 0;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }

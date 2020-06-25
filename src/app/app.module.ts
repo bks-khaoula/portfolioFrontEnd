@@ -24,11 +24,14 @@ import { AgendaComponent } from './agenda/agenda.component';
 import { AuthentificationService } from 'src/services/authentification.service';
 import { AdminComponent } from './admin/admin.component';
 import {MatCardModule} from '@angular/material/card';
-
-
-
+import {MatBadgeModule} from '@angular/material/badge'
+import {MatExpansionModule} from '@angular/material/expansion';
+import { DetailsComponent } from './details/details.component';
+import { CountdownModule } from 'ngx-countdown';
 @NgModule({
+
   declarations: [
+    
     AppComponent,
     AboutComponent,
     ContactComponent,
@@ -37,24 +40,26 @@ import {MatCardModule} from '@angular/material/card';
     AgendaComponent,
     AuthComponent,
     AdminComponent,
-    
-    
-    
+    DetailsComponent,
   ],
   imports: [
     
     BrowserModule,
-    ReactiveFormsModule,
-    FormsModule, 
-    AppRoutingModule, BrowserAnimationsModule,
+    CountdownModule,
+    ReactiveFormsModule,MatExpansionModule,
+    FormsModule,MatBadgeModule,
+    AppRoutingModule, BrowserAnimationsModule, 
     MatToolbarModule,
     MatInputModule,MatIconModule,MatCardModule,
     MatFormFieldModule,MatSelectModule,MatSidenavModule,
     HttpClientModule,AgmCoreModule.forRoot({
       apiKey:'AIzaSyA8XZOvt7au3RotHynQwE_iI7eJ--CLNm0'
-    }),MatStepperModule,MatButtonModule
-   
+    }),
+    MatStepperModule,MatButtonModule,
+    
+
   ],
+
   providers: [ConferenceService,AuthentificationService],
   bootstrap: [AppComponent]
 })

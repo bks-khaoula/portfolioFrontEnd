@@ -5,31 +5,42 @@
      <div class="col-md-6">   
      <div class="panel panel-default">
        <div class="panel-heading">
-        {{c.titre}}
+           <p class="ax">{{c.titre}} </p>
+        
+            
        </div>  
        <div class="panel-body">
-        <table>
-            <tr> 
-               
-                <td>
-             <img class="img-thumbnail"  src= "{{this.service.host+'/conference/photoConference/'+c.id}}">
-                  
-                </td>
-            <td>
-                <span  >
-                     <i class="fa" [ngClass]="{
-                        'fa-thumbs-up':c.acceptation,
-                        'fa-thumbs-down':!c.acceptation}">
-                     </i>
-                     </span>       
-            </td>
-            </tr>
+        <table class="table table-striped ">
+            <img style="height: 280px; width: 100%; " class="img-thumbnail"  src= "{{this.service.host+'/conference/photoConference/'+c.id}}">
+
+            <tbody>
+                
                 <tr>
-                <td>
-                   {{c.site}}
-                </td>
+                    <td>Site Web:</td>
+                    <td> <a href="">{{c.site}}</a> </td> 
+                </tr>
+                <tr>
+                    <td>Dates:</td>
+                    <td>{{c.date_debut}}
+                      <br>  {{c.date_fin}} </td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{c.email}} </td>
+                </tr>
+            <tr>
+                <div class="r">
+                    <span (click)="accepte(c) ">
+                        <i class="fa fa-3x" [ngClass]="{
+                               'fa-thumbs-up ':c.acceptation,
+                               'fa-thumbs-down ':!c.acceptation}">
+                        </i>
+                   </span>   
+                    <a  (click)="ondelet(c) " class="btn btn-danger">
+                        <i class="fa fa-trash" ></i></a>
+                   </div>
             </tr>
-            
+            </tbody>
         </table>
        </div>
      </div>   
@@ -37,13 +48,3 @@
     </div>
 
 </div>
-<i class="fa fa-thumbs-up" aria-hidden="true"></i>
-<i class="fa fa-thumbs-down" aria-hidden="true"></i>
-<i class="fa fa-check-square" aria-hidden="true"></i>
-
-<span class="badge">
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-<i class="fa fa-thumbs-down" aria-hidden="true"></i>
-
-<i class="fa fa-times-circle" aria-hidden="true"></i>
- </span>

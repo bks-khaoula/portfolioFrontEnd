@@ -17,29 +17,23 @@ import { Router } from '@angular/router';
 export class AjouterComponent implements OnInit {
   reactiveForm = new FormGroup({
     longitude: new FormControl(''),
-    latidude: new FormControl(''),
-    altitude: new FormControl(''),
-    Adresse: new FormControl(''),
-    Ville: new FormControl(''),
-    Pays: new FormControl(''),
+    latitude: new FormControl(''),
+    
+    adresse: new FormControl(''),
+    ville: new FormControl(''),
+    pays: new FormControl(''),
     
     });
 
-    reactiveForm2 = new FormGroup({
-     
-      description: new FormControl('')
-      });
-      reactiveForm3 = new FormGroup({
-        date_debut: new FormControl(''),
-        date_fin: new FormControl('')
-        
-        });
         reactiveForm4 = new FormGroup({
           titre: new FormControl(''),
           categorie: new FormControl(''),
           image: new FormControl(''),
           email: new FormControl(''),
-          site: new FormControl('')
+          site: new FormControl(''),
+          description: new FormControl(''),
+          date_debut: new FormControl(''),
+        date_fin: new FormControl('')
           
           });
           reactiveForm5 = new FormGroup({
@@ -53,14 +47,18 @@ export class AjouterComponent implements OnInit {
 
   latitude=31.63000;
   longitude=-8.00889;
+  locationChosen = false;
+
+
   public currentTime: number;
   public editPhoto: boolean;
   
   selectedFiles: any;
-  
+  public localisation:Localisation=new Localisation();
+  myLocalisation:Localisation[]=[];
   conference:Conference=new Conference();
   myconference: Conference[] =[];
-  localisation:Localisation=new Localisation();
+  
   mylocalisation:Localisation[]=[];
   comite:Comite=new Comite();
   mycomite:Comite[]=[];
@@ -93,7 +91,17 @@ export class AjouterComponent implements OnInit {
       image:this.reactiveForm4.value.image,
       email:this.reactiveForm4.value.email,
       site:this.reactiveForm4.value.site,
-      acceptation:true }));
+      description:this.reactiveForm4.value.description,
+      date_debut:this.reactiveForm4.value.date_debut,
+      date_fin:this.reactiveForm4.value.date_fin,
+      acceptation:false }));
+    formData.append('localisation',JSON.stringify({
+      longitude:this.reactiveForm.value.longitude,
+      latitude:this.reactiveForm.value.latitude,
+      
+      adresse:this.reactiveForm.value.adresse,
+      ville:this.reactiveForm.value.ville,
+      pays:this.reactiveForm.value.pays }));
     formData.append('file',this.selectedFiles);
     this.conferenceservice.saveConf(formData).subscribe(data =>{
       this.router.navigateByUrl('home');
@@ -101,10 +109,6 @@ export class AjouterComponent implements OnInit {
       console.log(error);
     });                   
   }
-
-
-
-
 
 
 
@@ -130,18 +134,22 @@ this.conferenceservice.saveComite(this.comite)
 savecomiteavecconfe(){
   const formData = new FormData();
   formData.append('comites',JSON.stringify({nom:this.reactiveForm5.value.nom,
-                                            prenom:this.reactiveForm5.value.prenom,
-                                            tel:this.reactiveForm5.value.tel,
-                                            email:this.reactiveForm5.value.email,
-                                            categorie:this.reactiveForm5.value.categorie
+                                    prenom:this.reactiveForm5.value.prenom,
+                                    tel:this.reactiveForm5.value.tel,
+                                    email:this.reactiveForm5.value.email,
+                                    categorie:this.reactiveForm5.value.categorie
   }));
   formData.append('conference',JSON.stringify(this.reactiveForm5.value.conference));
   this.conferenceservice.savecomiteavecconfe(formData).subscribe(data=>{
     this.router.navigateByUrl('home');
+    
   },(error)=>{
     console.log(error);
   });
 }
+
+
+
 
 
 
@@ -166,6 +174,22 @@ ondelet(c){
     })
   }
 }
+
+saveL(id){
+  this.conferenceservice.savelocal(id,this.localisation)
+  .subscribe((local)=>{
+    this.myLocalisation=[local, ...this.myLocalisation]
+  })
+}
+
+
+
+  onChoseLocation(event) {
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
+    this.locationChosen = true;
+    
+  }
 
   
 }

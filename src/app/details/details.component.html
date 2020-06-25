@@ -1,0 +1,71 @@
+<body style="margin-top: 30px;">
+<div *ngIf="currentconference">
+    <div class="panel panel-default" >
+    <div class="panel-heading">
+      Fiche Conférence : <h2> {{currentconference.titre}}
+      </h2>    
+    </div>
+      <div class="panel-body">
+        <img class="img-rounded"
+          src= "{{this.service.host+'/conference/photoConference/'+currentconference.id}}">
+
+        <table style="width: 100%;" class="table table-striped">
+          <tbody>
+            <tr>
+              <td><p>
+                Dates : {{currentconference.date_debut}}
+                /
+                {{currentconference.date_fin}}
+               </p></td>
+               <td></td>
+            </tr>
+            <tr>
+              <td><p>categorie : {{currentconference.categorie}}</p></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <p> <a> {{currentconference.site}}</a></p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p>{{currentconference.email}}</p>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>
+          {{currentconference.description}}
+        </h4>
+        <a (click)="getlocal(currentconference) " style="cursor: pointer;" >+Plus info </a>
+        
+    </div>
+
+  </div>
+</div>
+<div *ngIf="localisations">
+  
+  
+
+<div *ngFor="let l of localisations._embedded.localisations"
+ class="panel panel-primary" style="width: 50%; margin-left: 25%;" >
+  
+  <div class="panel-body">
+    <h1 style="text-align: center; font-family: monospace;">lieu</h1>
+    <h3>ville : <h3 style="color: rgb(68, 150, 245);">{{l.ville}}</h3></h3>
+    <h3>adresse : <h3 style="color: rgb(68, 150, 245); ">{{l.adresse}}</h3></h3>
+    <h3>pays : <h3 style="color: rgb(68, 150, 245);">{{l.pays}}</h3></h3>
+
+    <agm-map [latitude]="23.2222" 
+    
+    [longitude]="2323.23" >
+   
+    </agm-map>
+  </div>
+  
+</div><a>Voir Planning</a>
+</div>
+</body>

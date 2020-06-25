@@ -1,11 +1,10 @@
 export class Localisation{
 
-     adresse:String="";
-     ville:String="";
-     pays:String="";
-     longitude:number ;
-     latidude:number;
-     altitude:number;
-     conference:String="";
+     adresse:string;
+     ville:string;
+     pays:string;
+     longitude:number;
+     
+     latitude:number;
 
 }
