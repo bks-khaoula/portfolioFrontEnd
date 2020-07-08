@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { AppComponent } from './app.component';
@@ -27,7 +29,13 @@ import {MatCardModule} from '@angular/material/card';
 import {MatBadgeModule} from '@angular/material/badge'
 import {MatExpansionModule} from '@angular/material/expansion';
 import { DetailsComponent } from './details/details.component';
-import { CountdownModule } from 'ngx-countdown';
+import { TexteditorModule } from 'ng-texteditor';
+
+
+
+
+
+
 @NgModule({
 
   declarations: [
@@ -45,7 +53,6 @@ import { CountdownModule } from 'ngx-countdown';
   imports: [
     
     BrowserModule,
-    CountdownModule,
     ReactiveFormsModule,MatExpansionModule,
     FormsModule,MatBadgeModule,
     AppRoutingModule, BrowserAnimationsModule, 
@@ -56,6 +63,8 @@ import { CountdownModule } from 'ngx-countdown';
       apiKey:'AIzaSyA8XZOvt7au3RotHynQwE_iI7eJ--CLNm0'
     }),
     MatStepperModule,MatButtonModule,
+    TexteditorModule,
+    FlashMessagesModule.forRoot(),
     
 
   ],

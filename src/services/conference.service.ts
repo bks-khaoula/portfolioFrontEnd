@@ -4,14 +4,15 @@ import { Conference } from 'src/app/model/model.conference';
 import { Localisation } from 'src/app/model/model.localisation';
 import { Comite } from 'src/app/model/model.comite';
 import {Observable} from 'rxjs';
+import { Participant } from 'src/app/model/model.participant';
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ConferenceService{
-    public host:string="http://localhost:8090";
-    public urlapi:string="http://localhost:8090/conferences";
+    public host:string="http://localhost:8191";
+    public urlapi:string="http://localhost:8191/conferences";
     constructor(private http: HttpClient){
     }
 
@@ -21,11 +22,11 @@ return this.http.post<Conference>(this.host +'/conferences',conference);
 }
 
 savelocalisation(localisation:Localisation){
-    return this.http.post<Localisation>("http://localhost:8090/localisations",localisation);
+    return this.http.post<Localisation>("http://localhost:8191/localisations",localisation);
     }
 
 findAll(){
-    return this.http.get("http://localhost:8090/comites");
+    return this.http.get("http://localhost:8191/comites");
 }
 public getResource(url){
     return this.http.get(this.host+url);
@@ -33,21 +34,21 @@ public getResource(url){
 
 
 saveComite(comite:Comite){
-    return this.http.post<Comite>("http://localhost:8090/comites",comite);
+    return this.http.post<Comite>("http://localhost:8191/comites",comite);
 
 }
 
 savecomiteavecconfe(formData: FormData)
 {
-    return this.http.post("http://localhost:8090/comite/add",formData)
+    return this.http.post("http://localhost:8191/comite/add",formData)
 }
 public deletmembre(url){
    return this.http.delete(url);
 }
 
 
-getconference(){
-    return this.http.get("http://localhost:8090/conferences");
+getconference(page:number,size:number){
+    return this.http.get(this.host+'/conferences?page='+page+'&size='+size);
 }
 
 
@@ -62,8 +63,12 @@ public patchResource(id,acceptation){
 
  savelocal(id,localisation:Localisation)
   {
-      return this.http.post<Localisation> ('http://localhost:8090/localisations/addlocal/'+id
+      return this.http.post<Localisation> ('http://localhost:8191/localisations/addlocal/'+id
       ,localisation)
+  }
+
+  saveParticipant(id,participant:Participant){
+return this.http.post<Participant>(this.host+'/participants/add/'+id,participant)
   }
 
   public getDetails(url){
@@ -72,6 +77,10 @@ public patchResource(id,acceptation){
 
 public getLocalisation(c){
 return this.http.get(c._links.localisations.href);
+}
+
+public getplanning(a){
+    return this.http.get(a._links.plannings.href);
 }
 
 

@@ -1,5 +1,7 @@
 
+
 <body style="margin-top: 30px;">
+  
 <mat-horizontal-stepper labelPosition="bottom"  #stepper>
   <mat-step>
     <ng-template matStepLabel >Nouvel évènement</ng-template>
@@ -16,7 +18,7 @@
               <input matInput placeholder="Titre" type="text" name="titre" formControlName="titre"
                   [(ngModel)]="conference.titre">
             </mat-form-field>
-          
+            
             <mat-form-field>
               <mat-select placeholder="Catégorie" type="text" name="categorie" formControlName="categorie"
                    [(ngModel)]="conference.categorie">
@@ -25,6 +27,7 @@
               <mat-option value="Sciences de l'ingénieur">Sciences de l'ingénieur</mat-option>
               </mat-select>
             </mat-form-field>
+            
             </div>
             
             <div class="col-md-3">
@@ -32,6 +35,7 @@
               <input matInput placeholder="Email" type="text"  name="email" formControlName="email"
                   [(ngModel)]="conference.email">
             </mat-form-field>
+            
             <mat-form-field>
               <input matInput placeholder="Site Web" type="text"  name="site" formControlName="site"
                   [(ngModel)]="conference.site">
@@ -127,17 +131,10 @@
             <input matInput placeholder="Pays" type="text" name="Pays" formControlName="pays"
                 [(ngModel)]="localisation.pays" />
               </mat-form-field></td>
-              <td>
-                <button  (click)="uploadPhoto()" >ADD</button>
-              </td>
+              
 
         </tr>
-        <tr>
-          <td>
-            {{latitude}}
-            {{longitude}}
-          </td>
-        </tr>
+        
 
       </table>  
       </form>
@@ -145,7 +142,7 @@
     </div>
           <!------>
     <div>
-        <button mat-button matStepperNext>Next</button>
+        <button class="btn btn-primary" mat-button matStepperNext>Next</button>
     </div>
 
   </mat-step>
@@ -231,20 +228,70 @@
       </div>
     </div>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button class="btn btn-primary" mat-button matStepperPrevious>Back</button>
+        <button class="btn btn-primary" mat-button matStepperNext>Next</button>
       </div>
       <!----------->    
       
   </mat-step>
   <mat-step>
       <ng-template matStepLabel>Done</ng-template>
-
+      
+      
+     <div style="margin-left: 30px;">
+      <form  [formGroup]="reactiveForm6">
+        <flash-messages></flash-messages>
+        <table>
+          <thead style="background: rgba(77, 74, 74, 0.2);">
+                  <tr> 
+                     <th></th>
+                      <th><h4>Le Programme  :</h4>  </th>
+                     </tr>
+          </thead>
+          <tbody >
+            <tr >
+              <td >
+                <h3 >La durée</h3>
+                  <input type="text"  name="tempa" formControlName="tempa" [(ngModel)]="planning.tempa">
+               
+                
+              </td>
+              <td><textarea class="form-control" rows="4" cols="70"  type="text" name="programmea" formControlName="programmea" [(ngModel)]="planning.programmea" >
+              </textarea></td>
+            </tr>
+            <tr>
+              <td><h3 >La durée</h3>
+                <input type="text"  name="tempb" formControlName="tempb" [(ngModel)]="planning.tempb" >
+              </td>
+              <td><textarea class="form-control" rows="4" cols="70"  type="text" name="programmeb" formControlName="programmeb" [(ngModel)]="planning.programmeb">
+              </textarea></td>
+            </tr>
+            <tr>
+              <td><h3 >La durée</h3><input type="text"  name="tempc" formControlName="tempc" [(ngModel)]="planning.tempc" >
+              </td>
+              <td><textarea class="form-control" rows="4" cols="70"  type="text" name="programmec" formControlName="programmec" [(ngModel)]="planning.programmec">
+              </textarea></td>
+            </tr>
+            <tr>
+              <td><h3 >La durée</h3><input type="text"  name="tempd" formControlName="tempd" [(ngModel)]="planning.tempd" >
+              </td>
+              <td><textarea class="form-control" rows="4" cols="70"  type="text" name="programmed" formControlName="programmed" [(ngModel)]="planning.programmed">
+              </textarea></td>
+            </tr>
+          </tbody>
+        </table>
+        
+       
+      </form>
+      
+    </div>
       <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button class="btn btn-primary" mat-button matStepperPrevious >Back</button>
+          <button class="btn btn-primary" mat-button  (click)="uploadPhoto()" >Reset</button>
       </div>
   </mat-step>
 </mat-horizontal-stepper>
+
+
 
 </body>

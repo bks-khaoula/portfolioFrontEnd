@@ -6,6 +6,8 @@ import { Localisation } from '../model/model.localisation';
 import {FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
 import { Comite } from '../model/model.comite';
 import { Router } from '@angular/router';
+import { Planning } from '../model/model.planning';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 
@@ -19,21 +21,32 @@ export class AjouterComponent implements OnInit {
     longitude: new FormControl(''),
     latitude: new FormControl(''),
     
-    adresse: new FormControl(''),
-    ville: new FormControl(''),
-    pays: new FormControl(''),
+    adresse: new FormControl('',Validators.required),
+    ville: new FormControl('',Validators.required),
+    pays: new FormControl('',Validators.required),
+    
     
     });
+    reactiveForm6 = new FormGroup({
+      tempa: new FormControl(''),
+      programmea: new FormControl(''),
+      tempb: new FormControl(''),
+      programmeb: new FormControl(''),
+      tempc: new FormControl(''),
+      programmec: new FormControl(''),
+      tempd: new FormControl(''),
+      programmed: new FormControl('')
+      });
 
         reactiveForm4 = new FormGroup({
-          titre: new FormControl(''),
-          categorie: new FormControl(''),
-          image: new FormControl(''),
-          email: new FormControl(''),
-          site: new FormControl(''),
-          description: new FormControl(''),
-          date_debut: new FormControl(''),
-        date_fin: new FormControl('')
+          titre: new FormControl('',Validators.required),
+          categorie: new FormControl('',Validators.required),
+          image: new FormControl('',Validators.required),
+          email: new FormControl('',Validators.email),
+          site: new FormControl('',Validators.required),
+          description: new FormControl('',Validators.required),
+          date_debut: new FormControl('',Validators.required),
+        date_fin: new FormControl('',Validators.required)
           
           });
           reactiveForm5 = new FormGroup({
@@ -63,7 +76,7 @@ export class AjouterComponent implements OnInit {
   comite:Comite=new Comite();
   mycomite:Comite[]=[];
   
-  
+  planning:Planning=new Planning();
 
   public comites:any;
 
@@ -71,7 +84,7 @@ export class AjouterComponent implements OnInit {
   secondFormGroup: FormGroup;
 
   constructor(private conferenceservice:ConferenceService,
-    private _formBuilder: FormBuilder,private router:Router) { }
+    private _formBuilder: FormBuilder,private router:Router,private flashmessage:FlashMessagesService) { }
 
   ngOnInit() {
    this.getComite();
@@ -98,13 +111,23 @@ export class AjouterComponent implements OnInit {
     formData.append('localisation',JSON.stringify({
       longitude:this.reactiveForm.value.longitude,
       latitude:this.reactiveForm.value.latitude,
-      
       adresse:this.reactiveForm.value.adresse,
       ville:this.reactiveForm.value.ville,
       pays:this.reactiveForm.value.pays }));
+    formData.append('planning',JSON.stringify({
+      tempa:this.reactiveForm6.value.tempa,
+      programmea:this.reactiveForm6.value.programmea,
+      tempb:this.reactiveForm6.value.tempb,
+      programmeb:this.reactiveForm6.value.programmeb,
+      tempc:this.reactiveForm6.value.tempc,
+      programmec:this.reactiveForm6.value.programmec,
+      tempd:this.reactiveForm6.value.tempd,
+      programmed:this.reactiveForm6.value.programmed}));
     formData.append('file',this.selectedFiles);
     this.conferenceservice.saveConf(formData).subscribe(data =>{
-      this.router.navigateByUrl('home');
+      
+      this.flashmessage.show('Conference added successfully.',{cssClass: 'alert alert-success',timeout:5000})
+     //this.router.navigateByUrl('home');
     },(error)=>{
       console.log(error);
     });                   

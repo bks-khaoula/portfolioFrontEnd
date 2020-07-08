@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
+import { AuthentificationService } from 'src/services/authentification.service';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -7,10 +10,19 @@ import { NgModule } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'tp2';
+export class AppComponent implements OnInit {
+  
 
-  constructor(){
+  constructor(public authentificationService:AuthentificationService
+    ,private router:Router){
 
+  }
+  ngOnInit(): void {
+    this.authentificationService.loadAuthentificationUserFromLocalStorige();
+  }
+
+  onLogout(){
+    this.authentificationService.removeTokenFromLocalStorage();
+    this.router.navigateByUrl('home');
   }
 }

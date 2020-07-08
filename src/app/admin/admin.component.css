@@ -13,6 +13,8 @@ h2 {
 }
 .ax{
     text-align: center;
+    font-family: monospace;
+  
     
 }
 img{
@@ -57,3 +59,6 @@ h2.double:after {
     width: 95%;
     z-index: -1;
 }
+
+
+	

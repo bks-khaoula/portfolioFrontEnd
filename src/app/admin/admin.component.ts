@@ -11,6 +11,12 @@ import { Localisation } from '../model/model.localisation';
 })
 export class AdminComponent implements OnInit {
 
+
+  public size:number=4;
+  public currentPage:number=0;
+  public totalPages:number;
+  public pages:Array<number>;
+
   conferences;
   conference:Conference=new Conference();
   constructor(public service:ConferenceService,private route:Router) { }
@@ -23,32 +29,34 @@ export class AdminComponent implements OnInit {
 
 
   private getConference(){
-    this.service.getconference()
+    this.service.getconference(this.currentPage,this.size)
     .subscribe(data=>{
+      
+      this.totalPages=data["page"].totalPages;
+      this.pages=new Array<number>(this.totalPages);
       this.conferences=data;
     },err=>{
       console.log(err);
     })
   }
 
- 
-  onUpdateProduct(data) {
-    this.service.patchResource(this.service.host+'/conferences/editConf',data)
-      .subscribe(d=>{
-        data.acceptation = !data.acceptation
-      },err=>{
-        console.log(err);
-      })
+  public onPage(i){
+    this.currentPage=i;
+    this.getConference();
+
   }
+ 
 
   accepte(conferences){
+    let conf=confirm("confirm !!!");
+    if(conf){
     this.service.patchResource(conferences.id,conferences.acceptation)
     .subscribe(data=>{
       conferences.acceptation = !conferences.acceptation
     },error=>{
       console.log(error);
     })
-
+  }
   }
 
 
